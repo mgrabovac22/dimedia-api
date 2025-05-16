@@ -120,7 +120,10 @@ function dimedia_fetch_single_property_from_feed($feed_url, $property_id) {
                 'mapLocationSync'      => $item['mapLocationSync'] ?? '',
                 'propertyAddress'      => $item['propertyAddress'] ?? '',
                 'propertyDescriptions' => $item['propertyDescriptions'] ?? '',
-
+                'numberOfFloors'       => $item['floorsTotalNo'] ?? '',
+                'numberOfBedrooms'     => $item['bedroomsNo'] ?? '',
+                'distanceSea'          => $item['distanceSea'] ?? '',
+                'distancePublicTransportation' => $item['distancePublicTransportation'] ?? '',
             ];
 
             return $preparedProperty;

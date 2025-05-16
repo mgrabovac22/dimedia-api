@@ -7,64 +7,59 @@ if (!$realestate_data) {
 }
 
 $currency_symbol = !empty(get_option('osf_portfolio_archive')['currency_symbol']) ? get_option('osf_portfolio_archive')['currency_symbol'] : '€';
-$main_image     = $realestate_data['slika'] ?? '';
+$main_image = $realestate_data['slika'] ?? '';
+$opis = $realestate_data['opis'] ?? '';
+$wide_area = $realestate_data['wider_area'] ?? '';
 ?>
 
-<section class="single-property-content py-5">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-md-4">
+<div class="overview-style-">
+    <div class="single-portfolio-summary-meta row w-100">
+        <div class="col-xl-9 col-12">
+            <div class="row">
                 <?php if (!empty($main_image)): ?>
-                    <img src="<?php echo esc_url($main_image); ?>" class="img-fluid rounded shadow" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+                    <div class="col-xl-6 col-12 pt-3">
+                        <img src="<?php echo esc_url($main_image); ?>"
+                             class="attachment-rehomes-gallery-image size-rehomes-gallery-image wp-post-image img-fluid"
+                             alt="">
+                    </div>
                 <?php endif; ?>
-            </div>
-
-            <div class="col-md-5">
-                <div class="property-description" style="font-size: 1rem; line-height: 1.4;">
-                    <?php
-                    $opis = $realestate_data['opis'] ?? '';
-
-                    $opis = preg_replace('/<p>(\s|&nbsp;| )*<\/p>/i', '', $opis);
-                    $opis = preg_replace('/(\r?\n){2,}/', "\n", $opis);
-
-                    echo $opis;
-                    ?>
+                <div class="col-xl-6 col-12">
+                    <div class="px-xl-3 property-description" style="font-size: 1rem; line-height: 1.5;">
+                        <?php
+                        $opis = preg_replace('/<p>(\s|&nbsp;| )*<\/p>/i', '', $opis);
+                        $opis = preg_replace('/(\r?\n){2,}/', "\n", $opis);
+                        echo $opis;
+                        ?>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-3">
-                <h4 class="mb-4"><?php _e('Detalji', 'rehomes'); ?></h4>
-                <ul class="list-unstyled" style="font-size: 1rem;">
-                    <li><strong><?php _e('Status', 'rehomes'); ?>:</strong> <?php echo esc_html($realestate_data['status'] ?? ''); ?></li>
-                    <li><strong><?php _e('Površina', 'rehomes'); ?>:</strong> <?php echo esc_html($realestate_data['kvadratura'] ?? ''); ?> m²</li>
-                    <li><strong><?php _e('Lokacija', 'rehomes'); ?>:</strong> <?php echo esc_html($realestate_data['mjesto'] ?? ''); ?></li>
-                    <li><strong><?php _e('Vrsta', 'rehomes'); ?>:</strong> <?php echo esc_html($realestate_data['tip_nekretnine'] ?? ''); ?></li>
-                    <li><strong><?php _e('Stanje', 'rehomes'); ?>:</strong> <?php echo esc_html($realestate_data['stanje'] ?? ''); ?></li>
-                    <li><strong><?php _e('Kat', 'rehomes'); ?>:</strong> <?php echo esc_html($realestate_data['kat'] ?? ''); ?></li>
-                    <li><strong><?php _e('Cijena', 'rehomes'); ?>:</strong> <?php echo esc_html($currency_symbol . ' ' . ($realestate_data['cijena'] ?? '')); ?></li>
-                </ul>
-            </div>
+        <div class="col-xl-3 col-12">
+            <ul class="single-portfolio-summary-meta-list">
+                <li><span class="meta-title"><?php _e('Status', 'rehomes'); ?> </span><span class="meta-value"><?php echo esc_html($realestate_data['status'] ?? ''); ?></span></li>
+                <li><span class="meta-title"><?php _e('Površina', 'rehomes'); ?></span><span class="meta-value"><?php echo esc_html($realestate_data['kvadratura'] ?? ''); ?> m²</span></li>
+                <li><span class="meta-title"><?php _e('Lokacija', 'rehomes'); ?></span><span class="meta-value"><?php echo esc_html($realestate_data['mjesto'] ?? ''); ?></span></li>
+                <li><span class="meta-title"><?php _e('Vrsta', 'rehomes'); ?></span><span class="meta-value"><?php echo esc_html($realestate_data['tip_nekretnine'] ?? ''); ?></span></li>
+                <?php if (!empty($realestate_data['wider_area'])): ?>
+                    <li><span class="meta-title"><?php _e('Šira lokacija', 'rehomes'); ?></span><span class="meta-value"><?php echo esc_html($realestate_data['wider_area']); ?></span></li>
+                <?php endif; ?>
+                <?php if (!empty($realestate_data['broj_soba'])): ?>
+                    <li><span class="meta-title"><?php _e('Broj soba', 'rehomes'); ?></span><span class="meta-value"><?php echo esc_html($realestate_data['numberOfBedrooms']); ?></span></li>
+                <?php endif; ?>
+                <li><span class="meta-title"><?php _e('Kat', 'rehomes'); ?></span><span class="meta-value"><?php echo esc_html($realestate_data['numberOfFloors'] ?? ''); ?></span></li>
+                <li><span class="meta-title"><?php _e('Cijena (€)', 'rehomes'); ?></span><span class="meta-value"><?php echo esc_html(number_format(floatval($realestate_data['cijena']), 2, ',', '.')); ?></span></li>
+                <?php if (!empty($realestate_data['kvadratura']) && is_numeric($realestate_data['kvadratura']) && !empty($realestate_data['cijena']) && is_numeric($realestate_data['cijena'])): ?>
+                    <li><span class="meta-title"><?php _e('Cijena (€/m²)', 'rehomes'); ?></span>
+                        <span class="meta-value">
+                            <?php
+                            $cijena_m2 = floatval($realestate_data['cijena']) / floatval($realestate_data['kvadratura']);
+                            echo esc_html(number_format($cijena_m2, 2, ',', '.'));
+                            ?>
+                        </span>
+                    </li>
+                <?php endif; ?>
+            </ul>
         </div>
     </div>
-</section>
-
-<?php if (!empty($realestate_data['repeat_group'])): ?>
-    <section class="property-equipment py-5 bg-light">
-        <div class="container text-center">
-            <h4 class="mb-4"><?php _e('Opremljenost nekretnine', 'rehomes'); ?></h4>
-            <div class="row justify-content-center">
-                <?php foreach ($realestate_data['repeat_group'] as $entry):
-                    $title = $entry['title'] ?? '';
-                    if ($title): ?>
-                        <div class="col-6 col-sm-4 col-md-3 mb-4">
-                            <div class="d-flex flex-column align-items-center">
-                                <span class="material-icons text-primary" style="font-size: 36px;">check_circle</span>
-                                <span class="mt-2" style="font-size: 0.95rem;"><?php echo esc_html($title); ?></span>
-                            </div>
-                        </div>
-                    <?php endif;
-                endforeach; ?>
-            </div>
-        </div>
-    </section>
-<?php endif; ?>
+</div>
