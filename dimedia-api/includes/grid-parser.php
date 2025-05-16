@@ -119,6 +119,7 @@ function dimedia_fetch_single_property_from_feed($feed_url, $property_id) {
                 'mapLocationSyncType'  => $item['mapLocationSyncType'] ?? '',
                 'mapLocationSync'      => $item['mapLocationSync'] ?? '',
                 'propertyAddress'      => $item['propertyAddress'] ?? '',
+                'propertyDescriptions' => $item['propertyDescriptions'] ?? '',
 
             ];
 
