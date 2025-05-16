@@ -43,20 +43,28 @@ if (empty($equipment_items) && !$distance_text) return;
 <div class="row justify-content-center">
     <?php foreach ($equipment_items as $i => $item): ?>
         <div class="col-6 col-sm-4 col-md-3 mb-4">
-            <div class="elementor-element elementor-widget-icon-box animated-fast opal-move-up"
+            <div class="elementor-element elementor-element-icon-<?php echo $i; ?> animated-fast elementor-view-default elementor-position-top icon-box-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box animated opal-move-up"
                  data-id="icon-<?php echo $i; ?>"
                  data-element_type="widget"
+                 data-widget_type="icon-box.default"
                  data-settings='{"_animation":"opal-move-up","_animation_delay":<?php echo ($i % 4) * 150; ?>}'>
+                 
                 <div class="elementor-widget-container">
-                    <div class="elementor-icon-box-wrapper">
+                    <div class="elementor-icon-box-wrapper elementor-button-">
+                        
                         <div class="elementor-icon-box-icon">
-                            <span class="elementor-icon elementor-animation-" style="font-size: 32px;">
+                            <span class="elementor-icon elementor-animation-" style="font-size: 60px;">
                                 <i class="opal-icon- opal-icon-check-circle opal-custom" aria-hidden="true"></i>
                             </span>
                         </div>
+                        
                         <div class="elementor-icon-box-content text-center">
-                            <p class="elementor-icon-box-description mb-0"><?php echo esc_html($item); ?></p>
+                            <h3 class="elementor-icon-box-title" style="font-size: 1.0rem; margin-top: 0.75rem;">
+                                <span></span>
+                            </h3>
+                            <p class="elementor-icon-box-description"><?php echo esc_html($item); ?></p>
                         </div>
+
                     </div>
                 </div>
             </div>
