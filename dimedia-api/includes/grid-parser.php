@@ -110,13 +110,16 @@ function dimedia_fetch_single_property_from_feed($feed_url, $property_id) {
                 'status'            => $item['propertyStatus'] ?? '',
                 'slika'             => $images[0] ?? '',
                 'opis'              => $item['propertyDescription']['hr'] ?? '',
-                'additional_content'=> $item['propertyEquipment']['hr'] ?? '',
+                'propertyUtility'   => $item['propertyUtility'] ?? '',
+                'propertyPropertySpace' => $item['propertyPropertySpace'] ?? '',
+                'propertyEquipment'=> $item['propertyEquipment'] ?? '',
                 'repeat_group'      => $repeatGroup,
-                'mapLatitude' => $api_response['mapLatitude'] ?? '',
-                'mapLongitude' => $api_response['mapLongitude'] ?? '',
-                'mapLocationSyncType' => $api_response['mapLocationSyncType'] ?? '',
-                'mapLocationSync' => $api_response['mapLocationSync'] ?? '',
-                'propertyAddress' => $api_response['propertyAddress'] ?? ''
+                'mapLatitude'          => $item['mapLatitude'] ?? '',
+                'mapLongitude'         => $item['mapLongitude'] ?? '',
+                'mapLocationSyncType'  => $item['mapLocationSyncType'] ?? '',
+                'mapLocationSync'      => $item['mapLocationSync'] ?? '',
+                'propertyAddress'      => $item['propertyAddress'] ?? '',
+
             ];
 
             return $preparedProperty;
