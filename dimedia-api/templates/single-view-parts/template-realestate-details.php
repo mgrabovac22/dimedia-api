@@ -12,7 +12,7 @@ $opis = $realestate_data['opis'] ?? '';
 $wide_area = $realestate_data['wider_area'] ?? '';
 ?>
 
-<div class="overview-style-">
+<div class="overview-style-" id="overview">
     <div class="single-portfolio-summary-meta row w-100">
         <div class="col-xl-9 col-12">
             <div class="row">

@@ -35,7 +35,7 @@ if (empty($equipment_items) && !$distance_text) return;
 ?>
 
 <?php if ($distance_text): ?>
-    <div class="elementor-widget-container text-center mb-4">
+    <div class="elementor-widget-container text-center mb-4" id="amenities">
         <p class="fw-medium" style="font-size: 1rem;"><?php echo esc_html($distance_text); ?></p>
     </div>
 <?php endif; ?>

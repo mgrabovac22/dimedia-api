@@ -8,7 +8,7 @@ if (empty($gallery_images)) {
 }
 ?>
 
-<section class="property-gallery py-5">
+<section class="property-gallery py-5" id="gallery">
     <div class="masonry-grid row g-3">
         <?php foreach ($gallery_images as $img): ?>
             <div class="col-6 col-md-4 col-lg-3">
